@@ -60,6 +60,7 @@ public class RegistrationTest extends TestBase {
         //sign out
         registrationPage.signOut.click();
         Thread.sleep(2000);
+        //hoolpo
 
     }
 
