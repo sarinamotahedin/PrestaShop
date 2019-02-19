@@ -1,20 +1,35 @@
 package com.prestashop.pages;
 
-
 import com.prestashop.utilities.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+public class Login_Register_Page {
 
-public class RegistrationPage {
-
-    public RegistrationPage() {
+    public Login_Register_Page() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
+    //SIGN IN WEB ELEMENTS
+    @FindBy(id = "email")
+    public WebElement enterUserName;
 
-    //Page Factory - Object Repo
+    @FindBy(id = "passwd")
+    public WebElement enterPassword;
+
+    @FindBy(id = "SubmitLogin")
+    public WebElement signInBtn;
+
+    @FindBy(xpath = "//*[@id=\"center_column\"]/div[1]")
+    public WebElement loginErrorMsg;
+
+    //fullName on top corner
+    @FindBy(xpath = "//a[@class='account']/span")
+    public WebElement fullNameOnTopXpath;
+
+    //REGISTRATION WEB ELEMENTS
+    //Create an account box on the left of page
     @FindBy(id = "email_create")
     public WebElement createEmail;
 
@@ -60,6 +75,13 @@ public class RegistrationPage {
     public WebElement errorMsg;
 
 
+    //Action
+    public void login(String username, String password) {
+        this.enterUserName.sendKeys(username);
+        this.enterPassword.sendKeys(password);
+        this.signInBtn.click();
+    }
+
+
 
 }
-

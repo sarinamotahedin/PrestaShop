@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class ProductInformation extends TestBase {
+public class ProductDetailsTest extends TestBase {
     HomePage homePage = new HomePage();
     ProductPage productPage = new ProductPage();
 
@@ -24,7 +24,7 @@ public class ProductInformation extends TestBase {
         String productPrice = homePage.price.getText();
         System.out.println(productPrice);
 
-        //click on first product
+        //click on first product (Faded Short Sleeve T-shirts)
         homePage.product.click();
 
         //!!!!!!!GETTING TO PRODUCT PAGE

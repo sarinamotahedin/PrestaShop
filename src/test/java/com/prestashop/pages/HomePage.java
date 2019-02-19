@@ -26,6 +26,10 @@ public class HomePage{
     @FindBy(linkText = "Sign in")
     public  WebElement goToSignIn;
 
+    //I confirm my order button
+    @FindBy(linkText = "//*[@id=\"cart_navigation\"]/button/span")
+    public  WebElement iConfirmBtn;
+
 }
 
 

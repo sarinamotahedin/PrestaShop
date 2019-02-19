@@ -1,18 +1,19 @@
 package com.prestashop.tests.functional_tests.login;
 
 import com.prestashop.pages.HomePage;
-import com.prestashop.pages.RegistrationPage;
-import com.prestashop.utilities.FakerRepo;
+import com.prestashop.pages.Login_Register_Page;
 import com.prestashop.utilities.TestBase;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static com.prestashop.utilities.FakerRepo.*;
 
 public class RegistrationTest extends TestBase {
     HomePage homePage = new HomePage();
+    Login_Register_Page loginRegisterPage = new Login_Register_Page();
+    public static String saveEmail;
+    public static String savePassword;
 
 
     @Test
@@ -20,47 +21,55 @@ public class RegistrationTest extends TestBase {
         homePage.goToSignIn.click();
 
         //input an email address & hit create account button
-        registrationPage.createEmail.sendKeys(fakeEmail + Keys.ENTER);
+        loginRegisterPage.createEmail.sendKeys(fakeEmail + Keys.ENTER);
         Thread.sleep(1000);
 
         //find and select Mrs. button
-        registrationPage.femaleRadioBtn.click();
+        loginRegisterPage.femaleRadioBtn.click();
 
         //verify Mrs. button is selected
-        System.out.println(registrationPage.femaleRadioBtn.isSelected());
+        System.out.println(loginRegisterPage.femaleRadioBtn.isSelected());
 
         //input last name, email and password
-        registrationPage.lastName.sendKeys(fakeLastName);
-        registrationPage.email.clear();
-        registrationPage.email.sendKeys(fakeEmail);
-        registrationPage.inputPassword.sendKeys(fakePassword);
+        loginRegisterPage.lastName.sendKeys(fakeLastName);
+        loginRegisterPage.email.clear();
+        loginRegisterPage.email.sendKeys(fakeEmail);
+        loginRegisterPage.inputPassword.sendKeys(fakePassword);
+
+        saveEmail = fakeEmail;
+        System.out.println(saveEmail);
+        savePassword = fakePassword;
+        System.out.println(savePassword);
+
         Thread.sleep(1000);
 
         //Enter your address information
-        registrationPage.addressLine1.sendKeys(fakeAddress1);
-        registrationPage.addressCity.sendKeys(fakeCity);
-        Select state = new Select(registrationPage.state);
+        loginRegisterPage.addressLine1.sendKeys(fakeAddress1);
+        loginRegisterPage.addressCity.sendKeys(fakeCity);
+        Select state = new Select(loginRegisterPage.state);
         state.selectByValue("46");
-        registrationPage.zipCode.sendKeys(fakeZipCode.substring(0,5).replace("-", ""));
-        registrationPage.mobilePhone.sendKeys(fakeMobilePhone);
+        loginRegisterPage.zipCode.sendKeys(fakeZipCode.substring(0,5).replace("-", ""));
+        loginRegisterPage.mobilePhone.sendKeys(fakeMobilePhone);
+
         //click on create account
-        registrationPage.submitButton.click();
+        loginRegisterPage.submitButton.click();
 
         //Error Message Validation
-        System.out.println(registrationPage.errorMsg.isSelected());
-        Assert.assertTrue(registrationPage.errorMsg.isDisplayed());
+        System.out.println(loginRegisterPage.errorMsg.isSelected());
+        Assert.assertTrue(loginRegisterPage.errorMsg.isDisplayed());
         Thread.sleep(2000);
 
         //re-enter firstName and password
-        registrationPage.firstName.sendKeys(fakeFirstName);
-        registrationPage.inputPassword.sendKeys(fakePassword);
+        loginRegisterPage.firstName.sendKeys(fakeFirstName);
+        loginRegisterPage.inputPassword.sendKeys(fakePassword);
 
         //click on create account
-        registrationPage.submitButton.click();
-        //sign out
-        registrationPage.signOut.click();
+        loginRegisterPage.submitButton.click();
+
+        //Sign out
+        loginRegisterPage.signOut.click();
         Thread.sleep(2000);
-        //hoolpo
+
 
     }
 

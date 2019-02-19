@@ -37,7 +37,6 @@ public class CartPage extends TestBase {
 
     public void cartDetail() throws InterruptedException {
         //3.Click on any product that is not on sale
-        driver.get("http://automationpractice.com/index.php");
         anyProduct.click();
 
         //4.Enter a random quantity between 2and 5
